@@ -1,0 +1,60 @@
+# your code goes here
+import numpy as np 
+from matplotlib import pyplot as plt
+
+N=10
+points = np.random.rand(2,N)
+
+# Create a method det, input with three points in [x,y] form
+# if their vector product is positive, it identify a left turn
+def determinant(point1, point2, point3):
+    x1, y1 = point1
+    x2, y2 = point2
+    x3, y3 = point3
+    return (x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)
+
+
+# The get_hulll method which accept a 2*N matrix input 
+def get_hull(points):
+    # Find the Min y to start with 
+    min_index = np.argmin(points[1,:])
+    # Transpose 'points' into N * 2 matrix, points ordered as (x,y)
+    data = np.transpose(points)
+    # The lowest y point 'start' to start with 
+    start = data[min_index]
+    inverse_gradient = []
+    # Coordinator of starting point
+    x_val = points[0,min_index]
+    y_val = points[1,min_index]
+
+    for i in range (N):
+        y_distance = (points[1,i]-y_val)
+        # the starting point and itself -- avoid divided by zero
+        if y_distance == 0: y_distance = 1
+        val = ((points[0,i]-x_val)/(y_distance))
+        # Append the list with x,y coordinates of the point and their inverse_gradient 
+        inverse_gradient.append([points[0,i],points[1,i],val])
+    
+    inverse_gradient = np.array(inverse_gradient)
+    # sorts the data based on 'inverse_gradient' column 
+    # slices the data to retain only [x,y],i.e the first two columns 
+    sorted_data = inverse_gradient[inverse_gradient[:, 2].argsort()][:, :2]
+    # initializes the convex hull with two points
+    convex_hull = [start, sorted_data[0]]
+
+        
+    for curr_point in sorted_data[1:]:
+        # length check of at least two point && identify left turn 
+        while len(convex_hull) >= 2 and determinant(convex_hull[-2], convex_hull[-1], curr_point) > 0:
+            convex_hull.pop()
+        convex_hull.append(curr_point)
+
+    # Convert it back to the 2*M format 
+    hull = np.transpose(convex_hull)
+    
+    plt.plot(points[0,:],points[1,:],'.')
+    plt.plot(np.append(hull[0,:],hull[0,0]),np.append(hull[1,:],hull[1,0])) 
+    # append is used to close the hull
+    plt.show() 
+
+get_hull(points)
