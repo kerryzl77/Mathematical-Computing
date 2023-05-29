@@ -10,5 +10,4 @@ Welcome to my GitHub repository! This repository contains my projects and code r
 
 Feel free to explore the folders and check out the projects I've worked on in these areas. If you have any questions or suggestions, please feel free to reach out.
 
-Happy coding!
 
