@@ -4,7 +4,7 @@ Welcome to my GitHub repository! This repository contains my projects and code r
 
 ## Contents
 
-- [Numerical Analysis](https://github.com/kerryzl77/Mathematical-Computing/blob/main/Numerical%20Approximation.ipynb) - This folder contains projects and code related to numerical analysis.
+- [Numerical Analysis](https://github.com/kerryzl77/Mathematical-Computing/tree/main/Applied) - This folder contains projects and code related to numerical analysis.
 - [Algorithm](https://github.com/kerryzl77/Mathematical-Computing/tree/main/Algorithm%20) - Here, you can find projects and code related to algorithm implementations and optimizations.
 - [Statistical Simulations](https://github.com/kerryzl77/Mathematical-Computing/blob/main/Monte%20Carlo%20Simulation.ipynb) - This folder houses projects and code related to statistical simulations.
 
